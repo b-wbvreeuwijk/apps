@@ -44,7 +44,7 @@ describe('Config Screen component (not installed)', () => {
     await act(async () => {
       render(<GoogleAnalyticsConfigPage />);
     });
-    const keyFileInputBox = screen.getByLabelText(/Private Key File/i);
+    const keyFileInputBox = screen.getByLabelText(/Service Account Key/i);
 
     // user.type() got confused by the JSON string chars, so we'll just click and paste -- this
     // actually better recreates likely user behavior as a bonus
@@ -66,7 +66,7 @@ describe('Config Screen component (not installed)', () => {
       render(<GoogleAnalyticsConfigPage />);
     });
 
-    const keyFileInputBox = screen.getByLabelText(/Private Key File/i);
+    const keyFileInputBox = screen.getByLabelText(/Service Account Key/i);
 
     // user.type() got confused by the JSON string chars, so we'll just click and paste -- this
     // actually better recreates likely user behavior as a bonus
@@ -102,7 +102,6 @@ describe('Config Screen component (not installed)', () => {
 describe('Installed Service Account Key', () => {
   beforeEach(() => {
     mockSdk.app.getParameters.mockReturnValue({
-      serviceAccountKey: validServiceKeyFile,
       serviceAccountKeyId: validServiceKeyId,
       propertyId: 'properties/1234',
       contentTypes: {
@@ -121,7 +120,7 @@ describe('Installed Service Account Key', () => {
     const editServiceAccountButton = screen.getByTestId('editServiceAccountButton');
 
     await user.click(editServiceAccountButton);
-    const keyFileInputBox = screen.getByLabelText(/Private Key File/i);
+    const keyFileInputBox = screen.getByLabelText(/Service Account Key/i);
     await waitFor(() => user.click(keyFileInputBox));
 
     const newServiceKeyFile: ServiceAccountKey = {
@@ -137,7 +136,6 @@ describe('Installed Service Account Key', () => {
 
     expect(result).toEqual({
       parameters: {
-        serviceAccountKey: newServiceKeyFile,
         serviceAccountKeyId: {
           clientEmail: 'CLIENT_ID',
           clientId: 'CLIENT_ID',

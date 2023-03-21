@@ -18,6 +18,7 @@ describe('Setup Google Service Account Details page', () => {
           mergeSdkParameters={() => {}}
           onInEditModeChange={() => {}}
           isInEditMode={false}
+          onKeyFileUpdate={() => {}}
         />
       );
     });
