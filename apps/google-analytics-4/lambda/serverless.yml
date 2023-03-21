@@ -21,7 +21,7 @@ custom:
   dynamoDbEndpoint: http://dynamodb:8000
   dynamoDbtableName: sls-apps-ga4-backend-${opt:stage, 'dev'}-SharedCredentialsTable
   dynamoDbSharedCredentialsSecretKey: ${file(./config/serverless-env.${opt:stage, 'dev'}.yml):dynamoDbSharedCredentialsSecretKey}
-  awsRegion: 'us-east-1'
+  awsRegion: ${file(./config/serverless-env.${opt:stage, 'dev'}.yml):awsRegion}
 
 provider:
   name: aws
